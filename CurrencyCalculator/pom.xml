@@ -16,5 +16,45 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <build>
+        <plugins>
 
+            <plugin>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <wsdlUrls>
+                        <wsdlUrl>http://localhost:8081/CurrencyWebService?wsdl</wsdlUrl>
+                    </wsdlUrls>
+                    <xnocompile>false</xnocompile>
+                    <packageName>org.example.client</packageName>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>org.example.ExchangeCalculatorServicePublisher</mainClass>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>
