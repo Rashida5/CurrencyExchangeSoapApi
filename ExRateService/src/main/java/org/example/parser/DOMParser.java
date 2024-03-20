@@ -21,6 +21,8 @@ public class DOMParser {
             DocumentBuilder builder;
             builder = factory.newDocumentBuilder();
             Document doc = builder.parse(xmlStream);
+
+
             NodeList currencyNodes = doc.getElementsByTagName("currency");
             for(int i=0;i< currencyNodes.getLength();i++){
                 Element currencyElement = (Element) currencyNodes.item(i);
