@@ -14,5 +14,5 @@ public class ExchangeRequest {
     private String destinationCountry;
 
     private double amount;
-
 }
+

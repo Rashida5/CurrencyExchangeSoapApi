@@ -9,6 +9,7 @@ public class ExchangeCalculatorServicePublisher {
 
         ExchangeCalculatorService calculatorWebService = new ExchangeCalculatorServiceImpl();
 
+
         Endpoint.publish(address, calculatorWebService);
 
         System.out.println("CalculatorWebService published at: "+address);

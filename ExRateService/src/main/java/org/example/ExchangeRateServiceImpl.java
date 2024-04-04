@@ -1,6 +1,7 @@
 package org.example;
 
 import jakarta.jws.WebService;
+import org.example.Exceptions.ParserException;
 import org.example.enums.Disclaimer;
 import org.example.parser.DOMParser;
 import org.example.parser.XPathParser;
@@ -18,14 +19,20 @@ import java.net.URISyntaxException;
 public class ExchangeRateServiceImpl implements ExchangeRateService{
 
     @Override
-    public double getExchangeRate(String source, String destination, Disclaimer disclaimer) {
-        double rate;
-       if(disclaimer.equals(Disclaimer.DOM)){
-           rate =getExchangeRateDOM(source, destination);
-       }
-       else{
-           rate=getExchangeRateXpath(source, destination);
-       }
+    public double getExchangeRate(String source, String destination, String disclaimer) throws ParserException {
+        double rate = 0;
+
+
+            if (disclaimer.equals("DOM")) {
+                rate = getExchangeRateDOM(source, destination);
+            } else if (disclaimer.equals("XPath")) {
+                rate = getExchangeRateXpath(source, destination);
+            }
+            else{
+                throw new ParserException("Error Parsing type","ER001");
+            }
+
+
        return rate;
     }
 
